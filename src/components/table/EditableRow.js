@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { EditableContext } from '../context/EditableContext';
+import { EditableContext } from '../../context/EditableContext';
 
 
 export const EditableRow = ({ index, ...props }) => {

@@ -1,6 +1,6 @@
 import { Form, Input, InputNumber } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { EditableContext } from '../context/EditableContext';
+import { EditableContext } from '../../context/EditableContext';
 
 export const EditableCell = ({
     title,
@@ -52,7 +52,8 @@ export const EditableCell = ({
                             {
                                 required: true,
                                 type: 'number',
-                                message: `${title} debe ser un numero.`,
+                                min: 1,
+                                message: `${title} debe ser un numero mayor a 0.`,
                             },
                         ]}
                     >
@@ -67,7 +68,6 @@ export const EditableCell = ({
                         rules={[
                             {
                                 required: true,
-                                type: 'number',
                                 message: `${title} es obligatorio.`,
                             },
                         ]}

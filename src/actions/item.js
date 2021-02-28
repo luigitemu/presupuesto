@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
+
+
 export const startAddingItem = () => {
 
     const newItem = {
@@ -17,9 +19,6 @@ export const startAddingItem = () => {
 
         dispatch(addNew(newItem));
     }
-
-
-
 }
 
 const addNew = (item) => ({
@@ -48,13 +47,46 @@ export const startLoadingItems = () => {
 
 }
 
+export const startEditing = (item) => {
+
+
+    return (dispatch) => {
+
+        dispatch(editItem(item))
+    }
+
+}
+
+
+
+const editItem = (item) => ({
+    type: types.itemEditItem,
+    payload: { ...item }
+});
+
+
+export const startDeleting = (item) => {
+
+    return (dispatch) => {
+
+        dispatch(deleteItem(item))
+    }
+
+
+}
+
+const deleteItem = (item) => ({
+    type: types.itemDelete,
+    payload: item
+})
+
 
 const setItems = (items) => ({
     type: types.itemLoad,
     payload: items
 })
 
-const setTotal = (total) => ({
+export const setTotal = (total) => ({
     type: types.itemLoadTotal,
     payload: total
 })

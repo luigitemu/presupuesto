@@ -24,6 +24,21 @@ export const itemReducer = (state = initialState, action) => {
                 ...state,
                 items: [action.payload, ...state.items]
             }
+        case types.itemEditItem:
+            return {
+                ...state,
+                items: state.items.map(
+                    item => item.key === action.payload.key
+                        ? action.payload
+                        : item
+                )
+            }
+
+        case types.itemDelete:
+            return {
+                ...state,
+                items: state.items.filter(item => item.key !== action.payload)
+            }
 
 
         default:

@@ -9,5 +9,7 @@ export const types = {
     itemLoad: '[item] Load Items',
     itemAdd: '[item] Add Item',
     itemLoadTotal: '[item] Total price items',
+    itemEditItem: '[item]  Edit Item',
+    itemDelete: '[item]  Delete Item',
 
 }; 
