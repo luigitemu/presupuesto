@@ -2,7 +2,10 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Col, Divider, Row, Typography, Button } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { startAddingItem } from '../actions/item';
+import { startSetActiveProject } from '../actions/proyecto';
+// import { startAddingNewItem } from '../actions/proyecto';
 import { showMenu } from '../actions/ui';
 import { EditableTable } from '../components/table/EditableTable';
 
@@ -11,11 +14,13 @@ const { Title, Text } = Typography;
 
 export const Presupuesto = () => {
 
-    const { total } = useSelector(state => state.item);
+    const { total } = useSelector(state => state.presupuesto);
+    const { activeProject } = useSelector(state => state.proyecto);
+    const { id } = useParams();
     const [presupuestoInicial] = useState(50000)
     const [presupuesto, setPresupuesto] = useState(total);
-
     const dispatch = useDispatch();
+
 
     // Efecto
     useEffect(() => {
@@ -26,10 +31,13 @@ export const Presupuesto = () => {
         dispatch(showMenu());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(startSetActiveProject(id));
+    }, [dispatch, id]);
     // Funcionalidad 
 
     const handleAdd = () => {
-        dispatch(startAddingItem())
+        dispatch(startAddingItem(id));
     }
 
     return (
@@ -37,7 +45,7 @@ export const Presupuesto = () => {
             <Row>
                 <Col span={18}>
                     <Title>
-                        Presupuesto
+                        Presupuesto( {activeProject.title})
                     </Title>
                     <Text > Presupuesto Estimado: </Text>
                     <Text type="success"  >L{presupuestoInicial}  </Text>

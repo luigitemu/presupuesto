@@ -1,15 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Popconfirm, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditableCell } from './EditableCell';
 import { EditableRow } from './EditableRow';
-import { startEditing, setTotal, startDeleting } from '../../actions/item';
+import { startEditing, setTotal, startDeleting, startLoadingItems } from '../../actions/item';
+import { useParams } from 'react-router-dom';
 
 export const EditableTable = () => {
 
-    const { items } = useSelector(state => state.item);
+    const { items } = useSelector(state => state.presupuesto);
+    const { projects } = useSelector(state => state.proyecto);
+    const { id } = useParams();
     const dispatch = useDispatch();
+
+    const [data, setData] = useState(items);
+    // Efecto
+    useEffect(() => {
+
+        if (projects.length >= 1) {
+            dispatch(startLoadingItems(id));
+        }
+
+    }, [dispatch, id, projects]);
+
+    useEffect(() => {
+        setData(items);
+    }, [items])
 
     useEffect(() => {
 
@@ -74,7 +91,7 @@ export const EditableTable = () => {
         },
     ];
     const handleSave = (row) => {
-        dispatch(startEditing(row));
+        dispatch(startEditing(row.key, row));
     }
 
     const columns = initColumns.map((col) => {
@@ -99,7 +116,7 @@ export const EditableTable = () => {
 
     return (
         <Table
-            dataSource={items}
+            dataSource={data}
             rowClassName={() => 'editable-row'}
             components={components}
             columns={columns}

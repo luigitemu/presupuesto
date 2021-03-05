@@ -5,7 +5,7 @@ const initialState = {
     total: 0
 }
 
-export const itemReducer = (state = initialState, action) => {
+export const presupuestoReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.itemLoad:
             return {
