@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import { Col, Form, Row, Input, Button, Typography, Divider } from 'antd';
+import React from 'react';
+import { Col, Form, Row, Input, Button, Card } from 'antd';
 
 import { useDispatch } from 'react-redux';
-import { hideMenu } from '../../actions/ui';
+// import { hideMenu } from '../../actions/ui';
 import { GoogleOutlined } from '@ant-design/icons';
-import { startGoogleLogin } from '../../actions/auth';
-const { Title } = Typography;
+import { startGoogleLogin, startLoginWithEmailAndPassword } from '../../actions/auth';
+import { Link } from 'react-router-dom';
+// const { Title } = Typography;
 
 const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    labelCol: { span: 10 },
+    wrapperCol: { span: 14 },
 };
 const tailLayout = {
-    wrapperCol: { offset: 10, span: 16 },
+    wrapperCol: { offset: 5, span: 16 },
 };
 
 export const LoginPage = () => {
@@ -20,12 +21,8 @@ export const LoginPage = () => {
     const dispatch = useDispatch();
 
 
-    useEffect(() => {
-        dispatch(hideMenu())
-    }, [dispatch]);
-
-
-    const onFinish = (values) => {
+    const onFinish = ({ email, password }) => {
+        dispatch(startLoginWithEmailAndPassword(email, password));
 
     };
 
@@ -39,48 +36,67 @@ export const LoginPage = () => {
 
     return (
 
-        <Row justify="center" style={{ marginTop: '100px' }}>
-            <Title>
-                Login
-            </Title>
-            <Divider />
-            <Col span={8} >
-                <Form
-                    {...layout}
-                    name="basic"
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                >
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[{ required: true, message: 'Por Favor ingrese su usuario!' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{ required: true, message: 'Por favor ingrese su contraseña!' }]}
-                    >
-                        <Input.Password />
-                    </Form.Item>
-
-                    <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit" style={{ marginRight: 6 }}>
-                            Ingresar
-                    </Button>
-                        <Button
-                            type="ghost"
-                            icon={<GoogleOutlined />}
+        <div className="site-card-border-less-wrapper" style={{ height: '100vh' }}  >
+            <Row justify="center">
+                <Col span={10}>
+                    <Card title="Login" bordered={false} style={{
+                        textAlign: 'center', marginTop: 150, marginRight: 15,
+                        borderRadius: 10
+                    }} >
+                        <Form
+                            {...layout}
+                            name="basic"
+                            initialValues={{ remember: true }}
+                            onFinish={onFinish}
+                            onFinishFailed={onFinishFailed}
                         >
-                            Login con Google
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Col>
-        </Row>
+                            <Form.Item
+                                label="Correo Electronico"
+                                name="email"
+                                rules={[{ required: true, type: 'email', message: 'Por Favor ingrese un Email valido!' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Password"
+                                name="password"
+                                rules={[{ required: true, message: 'Por favor ingrese su contraseña!' }]}
+                            >
+                                <Input.Password />
+                            </Form.Item>
+
+                            <Form.Item {...tailLayout}   >
+                                <Col span={24}>
+                                    <Button type="primary" htmlType="submit" block >
+                                        Ingresar
+                                    </Button>
+                                </Col>
+
+                            </Form.Item>
+                            <Form.Item {...tailLayout}  >
+                                <Col md={{ span: 24 }} lg={{ span: 24 }}  >
+                                    <Button
+                                        type="ghost"
+                                        onClick={loginGoogle}
+                                        icon={<GoogleOutlined />}
+                                        block
+                                    >
+                                        Login con Google
+                                </Button>
+                                </Col>
+                            </Form.Item>
+                            <Form.Item {...tailLayout}  >
+                                <Col md={{ pull: 4 }} lg={{ span: 12, push: 5 }}  >
+                                    <Link to="/auth/register">
+                                        Crea una cuenta
+                                    </Link>
+                                </Col>
+                            </Form.Item>
+                        </Form>
+                    </Card>
+                </Col>
+            </Row>
+        </div >
     )
 }
