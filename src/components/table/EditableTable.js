@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 export const EditableTable = () => {
 
     const { items } = useSelector(state => state.presupuesto);
+    const { loadingTable } = useSelector(state => state.ui);
     const { projects } = useSelector(state => state.proyecto);
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -17,11 +18,9 @@ export const EditableTable = () => {
     const [data, setData] = useState(items);
     // Efecto
     useEffect(() => {
-
         if (projects.length >= 1) {
             dispatch(startLoadingItems(id));
         }
-
     }, [dispatch, id, projects]);
 
     useEffect(() => {
@@ -121,6 +120,7 @@ export const EditableTable = () => {
             components={components}
             columns={columns}
             scroll={{ y: 370 }}
+            loading={loadingTable}
         >
 
         </Table>

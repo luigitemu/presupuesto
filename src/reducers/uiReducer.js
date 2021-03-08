@@ -5,7 +5,8 @@ const initialState = {
     menuOpen: false,
     modalOpen: false,
     modalEditOpen: false,
-    loading: false
+    loading: false,
+    loadingTable: false
 }
 
 
@@ -51,6 +52,16 @@ export const uiReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false
+            }
+        case types.uiStartLoadingTable:
+            return {
+                ...state,
+                loadingTable: true
+            }
+        case types.uiFinishLoadingTable:
+            return {
+                ...state,
+                loadingTable: false
             }
         default:
             return state;

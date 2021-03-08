@@ -13,13 +13,15 @@ export const types = {
     uiCloseModal: '[ui] Close Modal',
     uiOpenModalEdit: '[ui] Open Modal Edit',
     uiCloseModalEdit: '[ui] Close Modal Edit',
+    uiStartLoadingTable: '[ui] Start Loading Table',
+    uiFinishLoadingTable: '[ui] Finish Loading Table',
 
     itemLoad: '[item] Load Items',
     itemAdd: '[item] Add Item',
     itemLoadTotal: '[item] Total price items',
     itemEditItem: '[item]  Edit Item',
     itemDelete: '[item]  Delete Item',
-    itemCleanLogOut: '[item]  Delete Item',
+    itemClean: '[item]  Clean Items',
 
     proyectoLoad: '[proyecto] Load projects',
     setActiveProject: '[proyecto] set Active Project',

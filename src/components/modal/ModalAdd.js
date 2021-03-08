@@ -58,6 +58,7 @@ export const ModalAdd = () => {
                     rules={[{
                         required: true,
                         type: 'number',
+                        min: 1,
                         message: 'Ingrese un numero mayor que 0'
                     }]}
                 >

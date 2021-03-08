@@ -39,9 +39,9 @@ export const LoginPage = () => {
         <div className="site-card-border-less-wrapper" style={{ height: '100vh' }}  >
             <Row justify="center">
                 <Col span={10}>
-                    <Card title="Login" bordered={false} style={{
+                    <Card title="Bienvenido" bordered={false} style={{
                         textAlign: 'center', marginTop: 150, marginRight: 15,
-                        borderRadius: 10
+                        borderRadius: 5
                     }} >
                         <Form
                             {...layout}

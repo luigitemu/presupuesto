@@ -40,6 +40,9 @@ export const presupuestoReducer = (state = initialState, action) => {
                 items: state.items.filter(item => item.key !== action.payload)
             }
 
+        case types.itemClean:
+            return initialState
+
 
         default:
             return state;

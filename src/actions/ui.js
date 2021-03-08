@@ -11,3 +11,6 @@ export const closeModalEdit = () => ({ type: types.uiCloseModalEdit });
 
 export const startLoading = () => ({ type: types.startLoading });
 export const finishLoading = () => ({ type: types.finishLoading });
+
+export const startLoadingTable = () => ({ type: types.uiStartLoadingTable });
+export const finishLoadingTable = () => ({ type: types.uiFinishLoadingTable });

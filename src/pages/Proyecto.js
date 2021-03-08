@@ -1,11 +1,10 @@
 import { DeleteFilled, DollarCircleFilled, EditFilled, PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, List, Popover, Row, Skeleton, Statistic, Typography } from 'antd'
+import { Button, Col, Divider, List, Popconfirm, Popover, Row, Skeleton, Statistic, Typography } from 'antd'
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { startLoadingItems } from '../actions/item';
+import { cleanItems, startLoadingItems } from '../actions/item';
 import { setActiveProject, startDeleteProject } from '../actions/proyecto';
-// import { startAddNewProject } from '../actions/proyecto';
 import { openModal, openModalEdit, showMenu } from '../actions/ui';
 import { ModalAdd } from '../components/modal/ModalAdd';
 import { ModalEdit } from '../components/modal/ModalEdit';
@@ -16,14 +15,15 @@ export const Proyecto = () => {
 
     const dispatch = useDispatch();
     const { projects } = useSelector(state => state.proyecto)
+    const { loadingTable } = useSelector(state => state.ui)
     const history = useHistory();
     useEffect(() => {
         dispatch(showMenu())
     }, [dispatch]);
 
-    // const handleRedirect = (id) => {
-    //     
-    // }
+    useEffect(() => {
+        dispatch(cleanItems());
+    }, [dispatch])
 
     // Manejo de Botones 
     const showModal = () => {
@@ -71,9 +71,8 @@ export const Proyecto = () => {
 
             <List
                 className="demo-loadmore-list"
-                // loading={initLoading}
+                loading={loadingTable}
                 itemLayout="horizontal"
-                // loadMore={loadMore}
                 dataSource={projects}
                 renderItem={item => (
                     <List.Item
@@ -95,17 +94,26 @@ export const Proyecto = () => {
                                 />
                             </Popover>,
                             <Popover content="Eliminar">
-                                <Button
-                                    shape="circle"
-                                    type="danger"
-                                    onClick={() => handleDelete(item.id)}
-                                    icon={<DeleteFilled />}
-                                />
+                                <Popconfirm
+                                    title="Esta seguro que desea Eliminar el proyecto?"
+                                    onConfirm={() => handleDelete(item.id)}
+                                >
+
+                                    <Button
+                                        shape="circle"
+                                        type="danger"
+                                        icon={<DeleteFilled />}
+                                    />
+                                </Popconfirm>
                             </Popover>,
                         ]}
 
                     >
-                        <Skeleton title={false} loading={false} active>
+                        <Skeleton
+                            title={false}
+                            loading={loadingTable}
+                            active
+                        >
                             <List.Item.Meta
                                 title={item.title}
                                 description={

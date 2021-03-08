@@ -31,7 +31,8 @@ export const proyectoReducer = (state = initialState, action) => {
                 ...state,
                 projects: state.projects.filter(p => p.id !== action.payload)
             }
-
+        case types.proyectoCleanLogOut:
+            return initialState
 
         case types.proyectoEdit:
             return {
