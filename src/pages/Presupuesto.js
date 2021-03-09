@@ -54,7 +54,11 @@ export const Presupuesto = () => {
     return (
         <>
             <Row>
-                <Col span={18}>
+                <Col
+                    sm={{ span: 18 }}
+                    lg={{ span: 18 }}
+
+                >
                     <Title>
                         Presupuesto( {activeProject.title})
                     </Title>
@@ -64,7 +68,7 @@ export const Presupuesto = () => {
                     <Text > Presupuesto Actual: </Text>
                     <Text type={(presupuestoInicial > presupuesto) ? "success" : "danger"} >L{presupuesto}</Text>
                 </Col>
-                <Col span={4} offset={2} >
+                <Col sm={{ span: 5 }} lg={{ span: 4, offset: 2 }}  >
                     <Button
                         shape="round"
                         type="primary"

@@ -2,19 +2,16 @@ import React from 'react';
 import { Col, Form, Row, Input, Button, Card } from 'antd';
 
 import { useDispatch } from 'react-redux';
-// import { hideMenu } from '../../actions/ui';
 import { GoogleOutlined } from '@ant-design/icons';
 import { startGoogleLogin, startLoginWithEmailAndPassword } from '../../actions/auth';
 import { Link } from 'react-router-dom';
-// const { Title } = Typography;
+
 
 const layout = {
     labelCol: { span: 10 },
     wrapperCol: { span: 14 },
 };
-const tailLayout = {
-    wrapperCol: { offset: 5, span: 16 },
-};
+
 
 export const LoginPage = () => {
 
@@ -38,7 +35,7 @@ export const LoginPage = () => {
 
         <div className="site-card-border-less-wrapper" style={{ height: '100vh' }}  >
             <Row justify="center">
-                <Col span={10}>
+                <Col xs={{ span: 24 }} sm={{ span: 18 }} md={{ span: 12 }} lg={{ span: 10 }} >
                     <Card title="Bienvenido" bordered={false} style={{
                         textAlign: 'center', marginTop: 150, marginRight: 15,
                         borderRadius: 5
@@ -66,8 +63,8 @@ export const LoginPage = () => {
                                 <Input.Password />
                             </Form.Item>
 
-                            <Form.Item {...tailLayout}   >
-                                <Col span={24}>
+                            <Form.Item   >
+                                <Col sm={{ offset: 0, span: 24, push: 10 }} >
                                     <Button
                                         shape="round"
                                         htmlType="submit"
@@ -77,11 +74,11 @@ export const LoginPage = () => {
                                         }} block >
                                         Ingresar
                                     </Button>
-                                </Col>
 
+                                </Col>
                             </Form.Item>
-                            <Form.Item {...tailLayout}  >
-                                <Col md={{ span: 24 }} lg={{ span: 24 }}  >
+                            <Form.Item >
+                                <Col sm={{ span: 24, push: 10 }} lg={{ span: 24 }}  >
                                     <Button
                                         type="ghost"
                                         shape="round"
@@ -93,8 +90,8 @@ export const LoginPage = () => {
                                 </Button>
                                 </Col>
                             </Form.Item>
-                            <Form.Item {...tailLayout}  >
-                                <Col md={{ pull: 4 }} lg={{ span: 12, push: 5 }}  >
+                            <Form.Item  >
+                                <Col sm={{ push: 10 }}   >
                                     <Link to="/auth/register">
                                         Crea una cuenta
                                     </Link>

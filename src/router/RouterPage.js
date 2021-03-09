@@ -35,11 +35,17 @@ export const RouterPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+
+
     const handleLogOut = () => {
         dispatch(startLogout());
     }
     const regresar = () => {
+        if (history.location.pathname === '/proyectp') {
+            return
+        }
         history.goBack();
+
     }
     return (
 

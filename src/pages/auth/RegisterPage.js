@@ -5,12 +5,10 @@ import { useDispatch } from 'react-redux';
 import { startRegisterUser } from '../../actions/auth';
 
 const layout = {
-    labelCol: { span: 11 },
+    labelCol: { span: 10 },
     wrapperCol: { span: 13 },
 };
-const tailLayout = {
-    wrapperCol: { offset: 5, span: 16 },
-};
+
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
@@ -27,13 +25,13 @@ export const RegisterPage = () => {
 
         <div className="site-card-border-less-wrapper" style={{ height: '100vh' }}  >
             <Row justify="center">
-                <Col span={10}>
+                <Col xs={{ span: 24 }} sm={{ span: 18 }} md={{ span: 16 }} lg={{ span: 10 }}>
                     <Card
                         title="Registrarse"
                         bordered={false}
                         style={{
                             textAlign: 'center',
-                            marginTop: 150,
+                            marginTop: 100,
                             marginRight: 15,
                             borderRadius: 10
                         }} >
@@ -91,16 +89,23 @@ export const RegisterPage = () => {
                             </Form.Item>
 
 
-                            <Form.Item {...tailLayout}   >
-                                <Col span={24}>
-                                    <Button type="primary" htmlType="submit" block >
+                            <Form.Item  >
+                                <Col sm={{ span: 24, push: 11 }} >
+                                    <Button
+                                        shape="round"
+                                        htmlType="submit"
+                                        style={{
+                                            backgroundColor: '#3A4E7A',
+                                            color: 'white'
+                                        }}
+                                        block >
                                         Registrarse
                                     </Button>
                                 </Col>
 
                             </Form.Item>
-                            <Form.Item {...tailLayout}  >
-                                <Col md={{ pul: 4 }} lg={{ span: 16, push: 4 }} >
+                            <Form.Item  >
+                                <Col sm={{ span: 24, push: 11 }}  >
                                     <Link to="/auth/login">
                                         Ya tiene una cuenta?
                                     </Link>

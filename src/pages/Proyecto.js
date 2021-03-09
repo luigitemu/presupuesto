@@ -46,13 +46,21 @@ export const Proyecto = () => {
     return (
         <>
             <Row>
-                <Col span={18}>
+                <Col
+                    md={{ span: 18 }}
+                    xs={{ span: 24 }}
+                >
+
                     <Title>
                         Proyectos
                     </Title>
 
                 </Col>
-                <Col span={4} offset={2} >
+                <Col
+                    xs={{ span: 24 }}
+                    md={{ span: 4, offset: 1 }}
+                    lg={{ span: 4, offset: 2 }}
+                >
                     <Button
                         shape="round"
                         onClick={showModal}

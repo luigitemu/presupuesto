@@ -77,7 +77,7 @@ export const EditableTable = () => {
         }
         ,
         {
-            title: 'Action',
+            title: 'Acción',
             dataIndex: 'Action',
             render: (_, record) =>
                 <Popconfirm title="Seguro que desea Eliminar?" onConfirm={() => handleDelete(record.key)}>
@@ -122,6 +122,7 @@ export const EditableTable = () => {
             columns={columns}
             scroll={{ y: 370 }}
             loading={loadingTable}
+            size="small"
         >
 
         </Table>
