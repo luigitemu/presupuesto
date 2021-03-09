@@ -44,3 +44,7 @@
     padding: 30px;
     background: #001529;
 }
+
+.ant-btn-danger {
+    border-color: #CA2637
+}

@@ -68,7 +68,13 @@ export const LoginPage = () => {
 
                             <Form.Item {...tailLayout}   >
                                 <Col span={24}>
-                                    <Button type="primary" htmlType="submit" block >
+                                    <Button
+                                        shape="round"
+                                        htmlType="submit"
+                                        style={{
+                                            backgroundColor: '#3A4E7A',
+                                            color: 'white'
+                                        }} block >
                                         Ingresar
                                     </Button>
                                 </Col>
@@ -78,6 +84,7 @@ export const LoginPage = () => {
                                 <Col md={{ span: 24 }} lg={{ span: 24 }}  >
                                     <Button
                                         type="ghost"
+                                        shape="round"
                                         onClick={loginGoogle}
                                         icon={<GoogleOutlined />}
                                         block

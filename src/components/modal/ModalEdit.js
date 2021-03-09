@@ -2,6 +2,7 @@
 import { Button, Form, Input, InputNumber, Modal, Typography } from 'antd'
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { SaveOutlined } from '@ant-design/icons'
 import { startEditingProject } from '../../actions/proyecto';
 import { closeModalEdit } from '../../actions/ui';
 
@@ -41,8 +42,10 @@ export const ModalEdit = () => {
             footer={[
                 <Button
                     form="editForm"
+                    shape="round"
                     type="primary"
                     key="submit"
+                    icon={<SaveOutlined />}
                     htmlType="submit"
                 >
                     Guardar

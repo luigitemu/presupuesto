@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { cleanItems, startLoadingItems } from '../actions/item';
 import { setActiveProject, startDeleteProject } from '../actions/proyecto';
-import { openModal, openModalEdit, showMenu } from '../actions/ui';
+import { hideMenu, openModal, openModalEdit } from '../actions/ui';
 import { ModalAdd } from '../components/modal/ModalAdd';
 import { ModalEdit } from '../components/modal/ModalEdit';
 
@@ -18,7 +18,7 @@ export const Proyecto = () => {
     const { loadingTable } = useSelector(state => state.ui)
     const history = useHistory();
     useEffect(() => {
-        dispatch(showMenu())
+        dispatch(hideMenu())
     }, [dispatch]);
 
     useEffect(() => {
@@ -46,23 +46,25 @@ export const Proyecto = () => {
     return (
         <>
             <Row>
-                <Col span={20}>
+                <Col span={18}>
                     <Title>
                         Proyectos
                     </Title>
 
                 </Col>
-                <Col span={2} offset={1} >
+                <Col span={4} offset={2} >
                     <Button
-                        shape="circle"
-                        type="primary"
+                        shape="round"
                         onClick={showModal}
                         icon={<PlusOutlined />}
-                        style={{ marginTop: 20, width: 60, height: 60 }}
+                        style={{
+                            backgroundColor: '#1890FF',
+                            color: 'white',
+                            marginTop: 20
+                        }}
                     // onClick={handleAdd}
                     >
-
-
+                        Nuevo Proyecto
                     </Button>
                 </Col>
                 <Divider />
@@ -82,7 +84,7 @@ export const Proyecto = () => {
                                     shape="circle"
                                     onClick={() => handleBudget(item.id, item)}
                                     icon={<DollarCircleFilled style={{ color: 'white' }} />}
-                                    style={{ backgroundColor: '#1BAE6C' }}
+                                    style={{ backgroundColor: '#091D36' }}
                                 />
                             </Popover>,
                             <Popover content="Editar">
@@ -90,7 +92,10 @@ export const Proyecto = () => {
                                     shape="circle"
                                     onClick={() => handleEdit(item.id, item)}
                                     icon={<EditFilled />}
-                                    style={{ backgroundColor: '#FCD200' }}
+                                    style={{
+                                        backgroundColor: '#5E83BA',
+                                        color: 'white'
+                                    }}
                                 />
                             </Popover>,
                             <Popover content="Eliminar">
@@ -102,6 +107,7 @@ export const Proyecto = () => {
                                     <Button
                                         shape="circle"
                                         type="danger"
+                                        style={{ backgroundColor: '#CA2637' }}
                                         icon={<DeleteFilled />}
                                     />
                                 </Popconfirm>

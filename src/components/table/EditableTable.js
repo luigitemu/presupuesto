@@ -84,6 +84,7 @@ export const EditableTable = () => {
                     <Button
                         shape="circle"
                         type="danger"
+                        style={{ backgroundColor: '#CA2637' }}
                         icon={<DeleteOutlined />}
                     ></Button>
                 </Popconfirm>

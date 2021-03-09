@@ -11,7 +11,8 @@ import {
     Switch,
     Route,
     Link,
-    Redirect
+    Redirect,
+    useHistory
 } from "react-router-dom";
 import { Ingresar } from '../pages/Ingresar';
 import { Cola } from '../pages/Cola';
@@ -32,12 +33,14 @@ export const RouterPage = () => {
     const { menuOpen } = useSelector(state => state.ui);
     const { name } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
     const handleLogOut = () => {
         dispatch(startLogout());
     }
-
+    const regresar = () => {
+        history.goBack();
+    }
     return (
 
 
@@ -54,7 +57,7 @@ export const RouterPage = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    selectedKeys={['1']}
+                // selectedKeys={['1']}
                 >
                     <Item key="1" icon={<ProfileOutlined />}>
                         <Link to="/proyecto">
@@ -87,11 +90,17 @@ export const RouterPage = () => {
                     <PageHeader
                         title={name}
                         className="site-page-header"
+                        onBack={() => regresar()}
                         extra={[
                             <Button
                                 key="1"
                                 type="danger"
                                 shape="round"
+
+                                style={{
+                                    backgroundColor: '#CA2637',
+                                    color: 'white',
+                                }}
                                 onClick={handleLogOut}
                                 icon={<LogoutOutlined />}
 
@@ -117,9 +126,8 @@ export const RouterPage = () => {
                         <Route exact path="/crear" component={CrearTicket} />
                         <Route exact path="/presupuesto/:id" component={Presupuesto} />
                         <Route exact path="/proyecto" component={Proyecto} />
-                        <Route exact path="/proyecto" component={Proyecto} />
                         <Route exact path="/escritorio" component={Escritorio} />
-                        <Redirect to="/ingresar" />
+                        <Redirect to="/proyecto" />
                     </Switch>
                 </Content>
             </Layout>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Input, InputNumber, Modal, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/ui';
+import { SaveOutlined } from '@ant-design/icons'
 import { startAddNewProject } from '../../actions/proyecto';
 const { Title } = Typography;
 
@@ -35,6 +36,8 @@ export const ModalAdd = () => {
                     form="addForm"
                     type="primary"
                     key="submit"
+                    shape="round"
+                    icon={<SaveOutlined />}
                     htmlType="submit"
                 >
                     Guardar
